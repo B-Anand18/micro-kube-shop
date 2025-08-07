@@ -10,14 +10,6 @@ import org.springframework.web.servlet.function.*;
 public class Routes {
 
     @Bean
-    public RouterFunction<ServerResponse> productServiceRoute() {
-        return GatewayRouterFunctions.route("product_service")
-                .route(RequestPredicates.path("/api/product"),
-                        HandlerFunctions.http("http://localhost:8084"))
-                .build();
-    }
-
-    @Bean
     public RouterFunction<ServerResponse> orderServiceRoute() {
         return GatewayRouterFunctions.route("order_service")
                 .route(RequestPredicates.path("/api/order"),
@@ -30,6 +22,14 @@ public class Routes {
         return GatewayRouterFunctions.route("inventory_service")
                 .route(RequestPredicates.path("/api/inventory"),
                         HandlerFunctions.http("http://localhost:8083"))
+                .build();
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> productServiceRoute() {
+        return GatewayRouterFunctions.route("product_service")
+                .route(RequestPredicates.path("/api/product"),
+                        HandlerFunctions.http("http://localhost:8084"))
                 .build();
     }
 
